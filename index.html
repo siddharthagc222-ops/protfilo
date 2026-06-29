@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Siddhartha GC — BCA Student, Java Developer & Web Developer based in Kathmandu, Nepal." />
+  <meta name="keywords" content="Siddhartha GC, BCA, Java Developer, Web Developer, Portfolio, Kathmandu, Nepal" />
+  <meta name="author" content="Siddhartha GC" />
+  <meta property="og:title" content="Siddhartha GC — Developer Portfolio" />
+  <meta property="og:description" content="BCA Student | Java Developer | Web Developer | Problem Solver" />
+  <title>Siddhartha GC — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-logo">S<span>.</span>GC</div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+      <p class="loader-label">Loading Portfolio</p>
+    </div>
+  </div>
+
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <header id="navbar" role="banner">
+    <a href="#hero" class="nav-logo" aria-label="Home">
+      Siddhartha<span class="logo-accent">.</span>
+    </a>
+    <nav class="nav-links" role="navigation" aria-label="Primary navigation">
+      <ul>
+        <li><a href="#about"     class="nav-link">About</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#skills"    class="nav-link">Skills</a></li>
+        <li><a href="#projects"  class="nav-link">Projects</a></li>
+        <li><a href="#journey"   class="nav-link">Journey</a></li>
+        <li><a href="#contact"   class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button id="theme-btn" class="icon-btn" aria-label="Toggle theme">🌙</button>
+      <a href="#contact" class="btn btn-primary nav-cta">Hire Me</a>
+      <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <a href="#about"     class="mob-link">About</a>
+    <a href="#education" class="mob-link">Education</a>
+    <a href="#skills"    class="mob-link">Skills</a>
+    <a href="#projects"  class="mob-link">Projects</a>
+    <a href="#journey"   class="mob-link">Journey</a>
+    <a href="#contact"   class="mob-link">Contact</a>
+    <a href="#contact"   class="btn btn-primary mob-cta">Hire Me</a>
+  </nav>
+
+  <main>
+
+    <section id="hero" aria-label="Introduction">
+      <div class="hero-grid">
+
+        <div class="hero-text">
+          <h1 class="hero-h1 rv">
+            <span class="hi">Hi, I'm</span>
+            <span class="name">Siddhartha GC</span>
+          </h1>
+
+          <div class="hero-typing rv d1" aria-live="polite">
+            <span class="typing-prefix">I am a&nbsp;</span>
+            <span id="typed-text"></span><span class="t-cursor" aria-hidden="true"></span>
+          </div>
+
+          <p class="hero-desc rv d2">
+            Passionate about software development, Java programming, and modern web technologies.
+            I build efficient, scalable, and user-friendly applications while continuously
+            pushing my craft forward.
+          </p>
+
+          <div class="hero-actions rv d3">
+            <a href="#contact" class="btn btn-primary btn-lg">✉ Contact Me</a>
+            <button class="btn btn-outline btn-lg" onclick="downloadCV()">⬇ Download CV</button>
+          </div>
+
+          <div class="hero-socials rv d4">
+            <a href="https://instagram.com/siddhartha.gc" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-btn" title="GitHub" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.6-4.04-1.6-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="mailto:siddhartha@example.com" class="social-btn" title="Email" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            </a>
+            <a href="#" class="social-btn" title="Twitter/X" aria-label="Twitter X">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual rv d2">
+          <div class="av-wrap">
+            <div class="av-glow"></div>
+            <div class="av-spin-outer"></div>
+            <div class="av-mask-outer"></div>
+            <div class="av-spin-inner"></div>
+            <div class="av-mask-inner"></div>
+            <div class="av-photo" aria-label="Profile photo">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            </div>
+            <div class="chip c1"><span>☕</span>Java</div>
+            <div class="chip c2"><span>🌐</span>Web Dev</div>
+            <div class="chip c3"><span>🗄️</span>MySQL</div>
+            <div class="chip c4"><span>🐍</span>Django</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="stats" aria-label="Statistics">
+      <div class="stats-bar rv">
+        <div class="stat-item">
+          <span class="stat-num" data-count="5">0</span>
+          <span class="stat-lbl">Languages</span>
+        </div>
+        <div class="stat-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="3">0</span>
+          <span class="stat-lbl">Projects Built</span>
+        </div>
+        <div class="stat-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="1200" data-suffix="+">0</span>
+          <span class="stat-lbl">Hours Coded</span>
+        </div>
+        <div class="stat-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="6">0</span>
+          <span class="stat-lbl">Semesters</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="grad-line" aria-hidden="true"></div>
+
+    <section id="about" aria-label="About me">
+      <div class="about-grid">
+        <div class="about-left rvL">
+          <p class="sec-tag">About Me</p>
+          <h2 class="sec-h">Turning ideas into<br><em>working software</em></h2>
+          <p class="about-p">
+            I'm <strong>Siddhartha GC</strong>, a BCA student at Trinity International SS College
+            affiliated with Tribhuvan University in Kathmandu, Nepal. I'm passionate about turning
+            ideas into clean, purposeful software that solves real problems.
+          </p>
+          <p class="about-p">
+            My journey started with curiosity about how computers work and grew into a focused
+            practice of building real applications — from backend Java systems to modern
+            Django-powered web apps with custom algorithms. I believe great software isn't just
+            functional — it's <strong>thoughtful</strong>.
+          </p>
+          <div class="traits">
+            <div class="trait"><span>🔍</span>Problem Solver</div>
+            <div class="trait"><span>📚</span>Lifelong Learner</div>
+            <div class="trait"><span>🤝</span>Team Player</div>
+            <div class="trait"><span>💡</span>Creative Thinker</div>
+            <div class="trait"><span>🎯</span>Detail Oriented</div>
+            <div class="trait"><span>🚀</span>Growth Mindset</div>
+          </div>
+        </div>
+        <div class="about-right rvR">
+          <div class="card about-card d1">
+            <div class="ac-icon">🎓</div>
+            <h3>Academic Foundation</h3>
+            <p>Pursuing BCA with deep focus on algorithms, data structures, OOP, and software engineering — building fundamentals that great products are built on.</p>
+          </div>
+          <div class="card about-card d2">
+            <div class="ac-icon">🔨</div>
+            <h3>Hands-On Builder</h3>
+            <p>I don't just study theory — I ship things. From food ordering systems to Django news portals with custom search algorithms, I learn by building.</p>
+          </div>
+          <div class="card about-card d3">
+            <div class="ac-icon">🌱</div>
+            <h3>Always Evolving</h3>
+            <p>Technology never stands still, and neither do I. I explore new frameworks, contribute to projects, and push my skills further every single week.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grad-line" aria-hidden="true"></div>
+
+    <section id="education" aria-label="Education">
+      <div class="sec-head rv">
+        <p class="sec-tag">Education</p>
+        <h2 class="sec-h">Academic <em>Background</em></h2>
+        <p class="sec-sub">Building a strong theoretical foundation to complement practical development skills.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item rv d1">
+          <div class="tl-node active"></div>
+          <div class="tl-connector"></div>
+          <p class="tl-year">2022 — Present</p>
+          <div class="card tl-card">
+            <div class="tl-top">
+              <div class="tl-info">
+                <h3>Bachelor of Computer Applications (BCA)</h3>
+                <p class="tl-inst">Trinity International SS College</p>
+                <p class="tl-univ">Tribhuvan University · Kathmandu, Nepal</p>
+              </div>
+              <span class="tl-badge active-badge">🟢 Pursuing</span>
+            </div>
+            <p class="tl-body">Core subjects include Data Structures &amp; Algorithms, Object-Oriented Programming,
+            Database Management Systems, Web Technologies, Computer Networks, Software Engineering,
+            and Operating Systems. Active in practical project work every semester.</p>
+            <div class="tl-chips">
+              <span>DSA</span><span>OOP</span><span>DBMS</span>
+              <span>Web Tech</span><span>Networking</span><span>Software Engg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item rv d2">
+          <div class="tl-node done"></div>
+          <div class="tl-connector"></div>
+          <p class="tl-year">2019 — 2021</p>
+          <div class="card tl-card">
+            <div class="tl-top">
+              <div class="tl-info">
+                <h3>Higher Secondary Education (+2)</h3>
+                <p class="tl-inst">Golden Gate International College</p>
+                <p class="tl-univ">Management Stream — Computer Science · Kathmandu, Nepal</p>
+              </div>
+              <span class="tl-badge done-badge">✓ Completed</span>
+            </div>
+            <p class="tl-body">Studied Management with Computer Science, building strong foundations in
+            business fundamentals alongside programming logic, algorithms, and information systems.
+            This is where the love for software development truly began.</p>
+          </div>
+        </div>
+
+        <div class="tl-item rv d3">
+          <div class="tl-node secondary"></div>
+          <p class="tl-year">Before 2019</p>
+          <div class="card tl-card">
+            <div class="tl-top">
+              <div class="tl-info">
+                <h3>School Level Education (SEE)</h3>
+                <p class="tl-inst">Secondary Education</p>
+                <p class="tl-univ">Baglung, Nepal</p>
+              </div>
+              <span class="tl-badge done-badge">✓ Completed</span>
+            </div>
+            <p class="tl-body">Completed foundational schooling in Baglung, Nepal with strong academic
+            performance. Developed core analytical and logical thinking skills that underpin everything
+            I build today.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="grad-line" aria-hidden="true"></div>
+
+    <section id="skills" aria-label="Skills">
+      <div class="sec-head rv">
+        <p class="sec-tag">Skills</p>
+        <h2 class="sec-h">Technical <em>Arsenal</em></h2>
+        <p class="sec-sub">Languages, frameworks, and tools I use to craft meaningful software — with honest proficiency levels.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="card skill-card rv d1">
+          <h3 class="sk-cat">Programming Languages</h3>
+          <div class="sk-list">
+            <div class="sk-row"><div class="sk-meta"><span>☕</span><b>Java</b><em>90%</em></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>🔵</span><b>C</b><em>85%</em></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>⚡</span><b>JavaScript</b><em>80%</em></div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>🐍</span><b>Python</b><em>72%</em></div><div class="sk-track"><div class="sk-fill" data-w="72"></div></div></div>
+          </div>
+        </div>
+        <div class="card skill-card rv d2">
+          <h3 class="sk-cat">Web Technologies</h3>
+          <div class="sk-list">
+            <div class="sk-row"><div class="sk-meta"><span>🌐</span><b>HTML5</b><em>95%</em></div><div class="sk-track"><div class="sk-fill" data-w="95"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>🎨</span><b>CSS3</b><em>90%</em></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>🌿</span><b>Django</b><em>75%</em></div><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>🔗</span><b>REST APIs</b><em>70%</em></div><div class="sk-track"><div class="sk-fill" data-w="70"></div></div></div>
+          </div>
+        </div>
+        <div class="card skill-card rv d3">
+          <h3 class="sk-cat">Tools &amp; Databases</h3>
+          <div class="sk-list">
+            <div class="sk-row"><div class="sk-meta"><span>🗄️</span><b>MySQL</b><em>82%</em></div><div class="sk-track"><div class="sk-fill" data-w="82"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>🔧</span><b>Git &amp; GitHub</b><em>78%</em></div><div class="sk-track"><div class="sk-fill" data-w="78"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>💻</span><b>VS Code</b><em>92%</em></div><div class="sk-track"><div class="sk-fill" data-w="92"></div></div></div>
+            <div class="sk-row"><div class="sk-meta"><span>🧠</span><b>DSA</b><em>83%</em></div><div class="sk-track"><div class="sk-fill" data-w="83"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-bubbles rv">
+        <div class="tb"><span>☕</span><p>Java</p></div>
+        <div class="tb"><span>🌐</span><p>HTML5</p></div>
+        <div class="tb"><span>🎨</span><p>CSS3</p></div>
+        <div class="tb"><span>⚡</span><p>JavaScript</p></div>
+        <div class="tb"><span>🐍</span><p>Python</p></div>
+        <div class="tb"><span>🌿</span><p>Django</p></div>
+        <div class="tb"><span>🗄️</span><p>MySQL</p></div>
+        <div class="tb"><span>🔧</span><p>Git</p></div>
+        <div class="tb"><span>🔵</span><p>C</p></div>
+        <div class="tb"><span>🧮</span><p>OOP</p></div>
+        <div class="tb"><span>🔗</span><p>REST</p></div>
+        <div class="tb"><span>💡</span><p>DSA</p></div>
+      </div>
+    </section>
+
+    <div class="grad-line" aria-hidden="true"></div>
+
+    <section id="projects" aria-label="Projects">
+      <div class="sec-head rv">
+        <p class="sec-tag">Projects</p>
+        <h2 class="sec-h">Things I've <em>Built</em></h2>
+        <p class="sec-sub">Real projects with real intent — each one taught me something new about architecture, problem-solving, and shipping software that works.</p>
+      </div>
+
+      <div class="proj-showcase">
+
+        <article class="proj-card proj-featured rv" data-index="01">
+          <div class="proj-visual" aria-hidden="true">
+            <div class="pv-bg pv-news"></div>
+            <div class="pv-lines" aria-hidden="true">
+              <div class="pv-line"></div><div class="pv-line"></div>
+              <div class="pv-line short"></div><div class="pv-line"></div>
+              <div class="pv-line short"></div>
+            </div>
+            <div class="pv-icon">📰</div>
+            <div class="pv-glow"></div>
+          </div>
+          <div class="proj-content">
+            <div class="proj-meta">
+              <span class="proj-num">01</span>
+              <span class="proj-star">⭐ Featured</span>
+            </div>
+            <h3 class="proj-title">AZNews — Django News Portal</h3>
+            <p class="proj-desc">
+              A full-featured news portal built with Django. Goes far beyond a typical CRUD app —
+              implements custom algorithms, a sophisticated author management system, and a
+              composite engagement scoring engine built from scratch.
+            </p>
+            <ul class="proj-feats">
+              <li><span class="feat-icon">⚡</span>Custom Rabin-Karp string search replacing Django ORM</li>
+              <li><span class="feat-icon">👤</span>Author activity management with inactivity detection</li>
+              <li><span class="feat-icon">📊</span>Composite engagement score: views + ratings + comments</li>
+              <li><span class="feat-icon">📝</span>Save-as-Draft workflow & content publishing pipeline</li>
+              <li><span class="feat-icon">🔐</span>UUID-based secure password reset & session management</li>
+              <li><span class="feat-icon">🎨</span>Hover preview cards, sticky sidebar with tabbed UI</li>
+            </ul>
+            <div class="proj-stack">
+              <span>Python</span><span>Django</span><span>HTML</span>
+              <span>CSS</span><span>JavaScript</span><span>MySQL</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj-card rv d1" data-index="02">
+          <div class="proj-visual" aria-hidden="true">
+            <div class="pv-bg pv-food"></div>
+            <div class="pv-icon">🍔</div>
+            <div class="pv-glow"></div>
+          </div>
+          <div class="proj-content">
+            <div class="proj-meta">
+              <span class="proj-num">02</span>
+            </div>
+            <h3 class="proj-title">Online Food Ordering System</h3>
+            <p class="proj-desc">
+              A full-featured web application that allows users to browse food menus,
+              place online orders, and manage their cart with a seamless and responsive experience.
+            </p>
+            <ul class="proj-feats">
+              <li><span class="feat-icon">🔐</span>User Authentication &amp; Session Management</li>
+              <li><span class="feat-icon">🍽️</span>Food Category Browsing &amp; Menu Display</li>
+              <li><span class="feat-icon">🛒</span>Shopping Cart &amp; Order Placement</li>
+              <li><span class="feat-icon">📦</span>Order Tracking &amp; Management</li>
+              <li><span class="feat-icon">📱</span>Fully Responsive UI across all devices</li>
+              <li><span class="feat-icon">🗄️</span>Database Integration for persistent data</li>
+            </ul>
+            <div class="proj-stack">
+              <span>Java</span><span>HTML</span><span>CSS</span>
+              <span>JavaScript</span><span>Database</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj-card rv d2" data-index="03">
+          <div class="proj-visual" aria-hidden="true">
+            <div class="pv-bg pv-algo"></div>
+            <div class="pv-bars" aria-hidden="true">
+              <div class="pv-bar" style="--h:60%"></div>
+              <div class="pv-bar" style="--h:90%"></div>
+              <div class="pv-bar" style="--h:40%"></div>
+              <div class="pv-bar" style="--h:75%"></div>
+              <div class="pv-bar" style="--h:55%"></div>
+              <div class="pv-bar active" style="--h:85%"></div>
+              <div class="pv-bar" style="--h:35%"></div>
+            </div>
+            <div class="pv-icon">🔢</div>
+            <div class="pv-glow"></div>
+          </div>
+          <div class="proj-content">
+            <div class="proj-meta">
+              <span class="proj-num">03</span>
+            </div>
+            <h3 class="proj-title">Algorithm Visualizer</h3>
+            <p class="proj-desc">
+              A Java project implementing and visualizing key computer science algorithms
+              with step-by-step execution traces and complexity analysis for educational purposes.
+            </p>
+            <ul class="proj-feats">
+              <li><span class="feat-icon">📊</span>Sorting Algorithm Step Visualizations</li>
+              <li><span class="feat-icon">🔍</span>Rabin-Karp String Matching</li>
+              <li><span class="feat-icon">⏱️</span>Time &amp; Space Complexity Display</li>
+              <li><span class="feat-icon">🧩</span>OOP Design Patterns Applied</li>
+            </ul>
+            <div class="proj-stack">
+              <span>Java</span><span>OOP</span><span>DSA</span><span>Algorithms</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="grad-line" aria-hidden="true"></div>
+
+    <section id="journey" aria-label="Learning journey">
+      <div class="sec-head rv">
+        <p class="sec-tag">Experience</p>
+        <h2 class="sec-h">Learning <em>Journey</em></h2>
+        <p class="sec-sub">No corporate job yet — but a disciplined, self-directed journey through the craft of software development.</p>
+      </div>
+      <div class="journey-grid">
+        <div class="card jc rv d1"><div class="jc-num">01</div><div class="jc-ico">☕</div><h3>Java Development</h3><p>Mastering OOP, design patterns, and building robust backend systems with clean architecture and SOLID principles.</p><div class="jc-bar"><div class="jc-fill" data-w="90"></div></div><span class="jc-pct">90%</span></div>
+        <div class="card jc rv d2"><div class="jc-num">02</div><div class="jc-ico">🌐</div><h3>Web Development</h3><p>Full-stack apps with HTML/CSS/JS + Django. From pixel-perfect UIs to server-side logic and database design.</p><div class="jc-bar"><div class="jc-fill" data-w="80"></div></div><span class="jc-pct">80%</span></div>
+        <div class="card jc rv d3"><div class="jc-num">03</div><div class="jc-ico">📦</div><h3>Building Products</h3><p>Shipping complete projects teaches what no classroom can: debugging, architectural decisions, and thinking about users.</p><div class="jc-bar"><div class="jc-fill" data-w="75"></div></div><span class="jc-pct">75%</span></div>
+        <div class="card jc rv d1"><div class="jc-num">04</div><div class="jc-ico">🧠</div><h3>Algorithms &amp; DSA</h3><p>Sharpening algorithmic thinking — sorting, searching, and implementing custom algorithms like Rabin-Karp from scratch.</p><div class="jc-bar"><div class="jc-fill" data-w="83"></div></div><span class="jc-pct">83%</span></div>
+        <div class="card jc rv d2"><div class="jc-num">05</div><div class="jc-ico">📝</div><h3>Technical Documentation</h3><p>Writing clear algorithm analyses, project reports, and structured academic deliverables — communication is engineering.</p><div class="jc-bar"><div class="jc-fill" data-w="77"></div></div><span class="jc-pct">77%</span></div>
+        <div class="card jc rv d3"><div class="jc-num">06</div><div class="jc-ico">🔭</div><h3>Exploring Modern Tech</h3><p>REST APIs, Git workflows, testing basics, and deployment concepts — building production-ready software instincts.</p><div class="jc-bar"><div class="jc-fill" data-w="70"></div></div><span class="jc-pct">70%</span></div>
+      </div>
+    </section>
+
+    <div class="grad-line" aria-hidden="true"></div>
+
+    <section id="contact" aria-label="Contact">
+      <div class="sec-head rv">
+        <p class="sec-tag">Contact</p>
+        <h2 class="sec-h">Let's <em>Connect</em></h2>
+        <p class="sec-sub">Open to collaborations and interesting conversations about building software. I respond within 24 hours.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-left rvL">
+          <p class="contact-intro">Whether you have a project idea, a collaboration proposal, or just want to talk tech — I'd love to hear from you.</p>
+          <div class="ci-list">
+            <div class="ci-item"><div class="ci-ico">✉️</div><div><p class="ci-lbl">Email</p><p class="ci-val">siddhartha.gc@email.com</p></div></div>
+            <div class="ci-item"><div class="ci-ico">📞</div><div><p class="ci-lbl">Phone</p><p class="ci-val">+977 98XXXXXXXX</p></div></div>
+            <div class="ci-item"><div class="ci-ico">📍</div><div><p class="ci-lbl">Location</p><p class="ci-val">Kathmandu, Bagmati Province, Nepal</p></div></div>
+          </div>
+        </div>
+        <div class="contact-right rvR">
+          <div class="card contact-card">
+            <h3 class="form-title">Send a Message</h3>
+            <div id="contact-form" class="cform">
+              <div class="form-row">
+                <div class="fg"><label for="f-name">Full Name</label><input type="text" id="f-name" placeholder="Your name" autocomplete="name"/></div>
+                <div class="fg"><label for="f-email">Email</label><input type="email" id="f-email" placeholder="your@email.com" autocomplete="email"/></div>
+              </div>
+              <div class="fg"><label for="f-subject">Subject</label><input type="text" id="f-subject" placeholder="What's this about?"/></div>
+              <div class="fg"><label for="f-msg">Message</label><textarea id="f-msg" rows="5" placeholder="Tell me what you have in mind…"></textarea></div>
+              <button type="button" class="btn btn-primary btn-full" id="send-btn">Send Message ✈️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <div class="foot-inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div class="foot-logo">Siddhartha<span>.</span>GC</div>
+          <p class="foot-tag">BCA Student · Java Developer · Web Developer</p>
+        </div>
+        <nav class="foot-nav" aria-label="Footer navigation">
+          <a href="#about">About</a><a href="#education">Education</a>
+          <a href="#skills">Skills</a><a href="#projects">Projects</a>
+          <a href="#journey">Journey</a><a href="#contact">Contact</a>
+        </nav>
+        <div class="foot-socials">
+          <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="social-btn" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.6-4.04-1.6-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="mailto:siddhartha@example.com" class="social-btn" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-div"></div>
+      <div class="foot-bottom">
+        <p>© 2026 Siddhartha GC. Designed &amp; Developed with <span style="color:#ef4444">❤️</span> by Siddhartha GC.</p>
+        <p class="foot-stack">HTML · CSS · JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" aria-label="Back to top">↑</button>
+  <div id="toast" role="alert" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
